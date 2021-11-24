@@ -10,7 +10,7 @@ const Form = ({ cards, setCards, card, setCard, option }) => {
     //Reset the card values if it is not editing a card
     useEffect(() => {
         if (option !== "edit-card") setCard({front:"", back:"", id: ""})
-    },[])
+    },[option, setCard])
     const newCards = cards;
     const history = useHistory();
     const [change, setChange] = useState(false);
@@ -112,7 +112,7 @@ export default function CardEditNCreate({deck, cards, setCards, card, setCard, o
     useEffect(() => {
         if (cardId)
         setCardId(() => cardId)    
-    },[cardId]);
+    },[cardId, setCardId]);
 
 return <div className ="container">
         <div>

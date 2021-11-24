@@ -32,7 +32,7 @@ export default function Deck(props) {
       if(deckId)
       loadDeck();
       return () => abortController.abort();
-    },[deckId]);
+    },[deckId, setDeck]);
   
     useEffect(() => {
       const abortController = new AbortController();
@@ -43,7 +43,7 @@ export default function Deck(props) {
       if (cardId)
       loadCard();
       return () => abortController.abort();
-    }, [cardId]);
+    }, [cardId, setCard]);
     
     return (
       <Switch>

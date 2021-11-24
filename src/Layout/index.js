@@ -39,7 +39,7 @@ function Layout() {
   },[]);
   const renderedDeckList = decks.map((deck,index) => {
     return (
-    <div> 
+    <div key = {index} > 
       <DeckListItems  key = {index} 
                       deck ={deck} decks ={decks} 
                       setDecks = {setDecks} 

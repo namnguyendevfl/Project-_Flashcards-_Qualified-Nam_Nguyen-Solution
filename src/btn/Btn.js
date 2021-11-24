@@ -40,11 +40,12 @@ const Btn = ({deck, option, card}) => {
                 title: 'Edit Card',
                 iconClassName: "oi oi-pencil"
             }
+            default:
         }
     })()
     //set up the icon style and url for different btn functions
     const btnClassName =(() => {
-        if (option === 'view' || option === "edit" || option == "edit-card" || option === "create-deck") {
+        if (option === 'view' || option === "edit" || option === "edit-card" || option === "create-deck") {
             return "mr-2 btn btn-secondary"
         }
         return "mr-2 btn btn-primary"

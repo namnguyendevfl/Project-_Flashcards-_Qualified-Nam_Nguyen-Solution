@@ -9,7 +9,7 @@ export function DeckForm({decks, setDecks, deck, setDeck, option}) {
     //Reset the deck values if it is not editing a deck
     useEffect(() => {
         if (option !== "edit-deck") setDeck({name: "", description: "", id: ""})
-    },[])
+    },[option, setDeck])
 
     //Using setDeck to store any changes 
     const handleChange = ({target}) => {

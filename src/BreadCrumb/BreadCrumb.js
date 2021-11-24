@@ -18,32 +18,33 @@ export default function BreadCrumb({deck, cards}) {
     const list = subUrl.map((aSubUrl,index) =>  {
         const breadcrumbItem = "breadcrumb-item";
         const activeBreadcrumbItem = "breadcrumb-item active";
-    if (aSubUrl === "" && index === 0) return <li className={breadcrumbItem} > <Link to = "/"> <span className = "oi oi-home"/> Home </Link></li>; //with the last splash
-    if (aSubUrl === "new" && deck === undefined) return <li className={activeBreadcrumbItem} > Create Deck</li>; //w/o the last splash
-    if (index === subUrl.length-1 && aSubUrl === deckId) return <li className={activeBreadcrumbItem}>{deck.name}</li>
-    if (deck !== undefined){
-        if (index === subUrl.length-2) 
-            if (aSubUrl !== "decks") return <li className={activeBreadcrumbItem}><Link to={`/decks/${deck.id}`}>{deck.name} </Link></li>;
-        if (index >= subUrl.length-1){  
-            let value = "" 
-            switch(aSubUrl) {
-                case "study":
-                    value = "Study";
-                    break; 
-                case "edit" : 
-                    (cards)
-                    ? value = `Edit Card ${cardIdx}`
-                    : value = `Edit Deck`;
-                    break;
-                case "new"  : 
-                    value = "Add Card";
-                    break; 
-                default:
-            };
-            return <li className={activeBreadcrumbItem}>{value}</li> // does not show the last splash
+        if (aSubUrl === "" && index === 0) return <li className={breadcrumbItem} key = {index}> <Link to = "/"> <span className = "oi oi-home"/> Home </Link></li>; //with the last splash
+        if (aSubUrl === "new" && deck === undefined) return <li className={activeBreadcrumbItem} key = {index}> Create Deck</li>; //w/o the last splash
+        if (index === subUrl.length-1 && aSubUrl === deckId) return <li className={activeBreadcrumbItem} key = {index}>{deck.name}</li>
+        if (deck !== undefined){
+            if (index === subUrl.length-2) 
+                if (aSubUrl !== "decks") return <li className={activeBreadcrumbItem} key = {index}><Link to={`/decks/${deck.id}`}>{deck.name} </Link></li>;
+            if (index >= subUrl.length-1){  
+                let value = "" 
+                switch(aSubUrl) {
+                    case "study":
+                        value = "Study";
+                        break; 
+                    case "edit" : 
+                        (cards)
+                        ? value = `Edit Card ${cardIdx}`
+                        : value = `Edit Deck`;
+                        break;
+                    case "new"  : 
+                        value = "Add Card";
+                        break; 
+                    default:
+                };
+                return <li className={activeBreadcrumbItem} key = {index}>{value}</li> // does not show the last splash
+            }
+        return null;
         }
-    return null;
-}
+        return null
     });
     return  <nav aria-label={breadcrumb}>
                 <ol className={breadcrumb}>{list}</ol>
