@@ -6,7 +6,7 @@ import { createDeck, updateDeck } from "../utils/api";
 
 export function DeckForm({decks, setDecks, deck, setDeck, option}) {
     const history = useHistory();
-    //Reset the deck values if it is not editing a deck
+    //Reset empty values if it is not editing a deck
     useEffect(() => {
         if (option !== "edit-deck") setDeck({name: "", description: "", id: ""})
     },[option, setDeck])

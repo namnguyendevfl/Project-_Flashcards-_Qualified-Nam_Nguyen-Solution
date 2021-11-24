@@ -18,16 +18,11 @@ const Home = ({renderedDeckList}) => (
 )
 
 function Layout() {
-  const initialDeck = {
-    name: "", 
-    description: "", 
-    id: ""
-  }
   const [ decks, setDecks ] = useState([]);
-  //Define a deck variable here using initialDeck value 
-  //We can use this to create a new deck with the initialDeck value
-  //or we can pass it into the Deck component and edit it
-  const [ deck, setDeck ] = useState(initialDeck);
+  //Define a deck variable here using some empty initial values
+  //We can use this to create a new deck with the initial values
+  //or we can store a deck needed to edit pass it into the deckCreateNEdit component and edit it
+  const [ deck, setDeck ] = useState({name: "", description: "", id: ""});
   useEffect (() => {
       const abortController = new AbortController();
       const deckList = async () => {
@@ -69,7 +64,7 @@ function Layout() {
         {/* Create a parent deck route to nest other routes with the same prefix '/decks/:deckId' */}
         {/* We dont have to pass setDeckId to and lift it up from each of these nested routes */}
         {/* Pass deck and setDeck to this component for later use when editing a deck */}
-          <Route path = "/decks/:deckId">
+          <Route path = {`${routeUrls.deckView}`}>
             <Deck decks = {decks} setDecks = {setDecks} 
                   deck = {deck} setDeck = {setDeck} 
             />

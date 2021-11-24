@@ -7,7 +7,7 @@ const Form = ({ cards, setCards, card, setCard, option }) => {
     const {deckId} = useParams();
     const deckIdInNum = parseInt(deckId);
 
-    //Reset the card values if it is not editing a card
+    //Reset the tmpety value if it is not editing a card
     useEffect(() => {
         if (option !== "edit-card") setCard({front:"", back:"", id: ""})
     },[option, setCard])
@@ -108,7 +108,6 @@ export default function CardEditNCreate({deck, cards, setCards, card, setCard, o
     //get the cardId parameter if there is
     //then store it in setCardId and lift it up to the parent component to get the card having the "id" key which is the cardId parameter
     const { cardId } = useParams();
-
     useEffect(() => {
         if (cardId)
         setCardId(() => cardId)    

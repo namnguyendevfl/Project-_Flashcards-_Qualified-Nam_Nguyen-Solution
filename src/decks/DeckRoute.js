@@ -17,6 +17,9 @@ export default function Deck(props) {
     const { deckId } = useParams()
     const [ cardId, setCardId ] = useState(null);
     const [ cards, setCards ] = useState([])
+    //Define a card variable here using some empty initial values
+    //We can use this to create a new card with the initial values
+    //or we can store a card needed to edit pass it into the cardCreateNEdit component and edit it
     const [ card, setCard ] = useState({front:"", back:"", id: ""})
     useEffect(() => {
       const abortController = new AbortController();
