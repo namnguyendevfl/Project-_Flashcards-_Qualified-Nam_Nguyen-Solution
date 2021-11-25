@@ -24,7 +24,7 @@ export default function DeckListItems({deck, decks, setDecks}) {
             <Btn deck = {deck} option = "study" />            
             </div> 
             <div className = "float-end">
-              <Dlt deckId = {id} decks ={decks} setDecks ={setDecks}/>
+              <Dlt option = "deck" deckId = {id} decks ={decks} setDecks ={setDecks}/>
             </div>
           </div>
         </div>

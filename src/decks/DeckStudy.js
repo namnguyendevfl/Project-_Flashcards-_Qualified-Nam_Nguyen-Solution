@@ -52,7 +52,7 @@ export default function DeckStudy({deck}) {
         </div>
         <div className = "container border border-secondary p-2 my-2"> 
             {cards.length < 3
-                ? <NotEnough cards = {cards}/>
+                ? <NotEnough deck = {deck} cards = {cards}/>
                 : <div>
                     <h5>Card {cardNum} of {cards.length}</h5>  
                         <div>

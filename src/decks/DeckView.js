@@ -5,12 +5,15 @@ import Btn from "../btn/Btn";
 import Dlt from "../btn/DltBtn";
 import CardListItems from "../cards/CardListItems";
 
-export default function DeckView({ deck, decks, setDecks }) {    
+export default function DeckView({ deck, decks, setDecks, cards, setCards, countCards, setCountCards }) {    
     const { deckId } = useParams();
     //create a list of cards
     const renderedCardList = deck.cards && deck.cards.map((card, idx) =>{
         return (
-            <CardListItems  key = {idx} deck = {deck} card ={card}  />                      
+            <CardListItems  key = {idx} deck = {deck} card ={card} 
+                            cards = {cards} setCards = {setCards}
+                            countCards = {countCards} setCountCards = {setCountCards}
+                            />                      
         )
     });
 

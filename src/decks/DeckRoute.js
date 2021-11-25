@@ -12,11 +12,15 @@ export default function Deck(props) {
       decks,
       setDecks,
       deck,
-      setDeck
+      setDeck,
+      countDecks,
+      setCountDecks
     } = props
     const { deckId } = useParams()
     const [ cardId, setCardId ] = useState(null);
     const [ cards, setCards ] = useState([])
+    const [ countCards, setCountCards ] = useState(0)
+    console.log(countCards)
     //Define a card variable here using some empty initial values
     //We can use this to create a new card with the initial values
     //or we can store a card needed to edit pass it into the cardCreateNEdit component and edit it
@@ -35,7 +39,7 @@ export default function Deck(props) {
       if(deckId)
       loadDeck();
       return () => abortController.abort();
-    },[deckId, setDeck]);
+    },[deckId, setDeck, card, countDecks, countCards]);
   
     useEffect(() => {
       const abortController = new AbortController();
@@ -46,14 +50,16 @@ export default function Deck(props) {
       if (cardId)
       loadCard();
       return () => abortController.abort();
-    }, [cardId, setCard]);
+    }, [cardId, setCard, countCards]);
     
     return (
       <Switch>
       {/* The deck view route with the path '/decks/:deckId' */}
         <Route path = {`${routeUrls.deckView}`} exact>
           <DeckView deck = {deck} setDeck = {setDeck} 
-                    decks = {decks} setDecks = {setDecks} 
+                    decks = {decks} setDecks = {setDecks}
+                    cards = {cards} setCards = {setCards}
+                    countCards = {countCards} setCountCards = {setCountCards}
                     />
         </Route>
       {/* The deck study route with the path '/decks/:deckId/study' */}
@@ -65,6 +71,7 @@ export default function Deck(props) {
         <Route path = {`${routeUrls.deckEdit}`}>
           <DeckEditNCreate  option = "edit-deck" decks = {decks} setDecks = {setDecks} 
                             deck = {deck} setDeck = {setDeck}
+                            countDecks = {countDecks} setCountDecks = {setCountDecks} 
                             />
         </Route>
       {/* The card create route with the path '/decks/:deckId/cards/new' */}
@@ -72,6 +79,7 @@ export default function Deck(props) {
           <CardEditNCreate  option = "create-card" deck = {deck} 
                             card ={card} setCard = {setCard} 
                             cards = {cards} setCards ={setCards}
+                            countCards = {countCards} setCountCards = {setCountCards}
                             />
         </Route>
       {/* The card edit route with the path '/decks/:deckId/cards/:cardId/edit' */}
@@ -81,6 +89,7 @@ export default function Deck(props) {
                             card ={card} setCard = {setCard} 
                             cards = {cards} setCards ={setCards}
                             setCardId = {setCardId}
+                            countCards = {countCards} setCountCards = {setCountCards}
                             />
         </Route>
       </Switch>

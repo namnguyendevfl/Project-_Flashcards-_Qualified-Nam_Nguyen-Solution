@@ -19,6 +19,8 @@ const Home = ({renderedDeckList}) => (
 
 function Layout() {
   const [ decks, setDecks ] = useState([]);
+  //add countDecks and setCountDecks to help count any changes to decks and re-render the decks
+  const [ countDecks, setCountDecks ] = useState(0)
   //Define a deck variable here using some empty initial values
   //We can use this to create a new deck with the initial values
   //or we can store a deck needed to edit pass it into the deckCreateNEdit component and edit it
@@ -31,7 +33,7 @@ function Layout() {
       }
       deckList();
       return () => abortController.abort();
-  },[]);
+  },[countDecks]);
   const renderedDeckList = decks.map((deck,index) => {
     return (
     <div key = {index} > 
@@ -58,6 +60,7 @@ function Layout() {
               <DeckEditNCreate  option = "create-deck" 
                                 decks = {decks} setDecks = {setDecks} 
                                 deck = {deck} setDeck = {setDeck} 
+                                countDecks = {countDecks} setCountDecks = {setCountDecks} 
                                 />
             </div>
           </Route>
@@ -66,7 +69,8 @@ function Layout() {
         {/* Pass deck and setDeck to this component for later use when editing a deck */}
           <Route path = {`${routeUrls.deckView}`}>
             <Deck decks = {decks} setDecks = {setDecks} 
-                  deck = {deck} setDeck = {setDeck} 
+                  deck = {deck} setDeck = {setDeck}
+                  countDecks = {countDecks} setCountDecks = {setCountDecks} 
             />
           </Route>
           <Route path = "*" >

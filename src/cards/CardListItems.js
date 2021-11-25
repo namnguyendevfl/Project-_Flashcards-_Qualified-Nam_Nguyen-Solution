@@ -3,8 +3,9 @@ import { useParams } from "react-router";
 import Btn from "../btn/Btn";
 import Dlt from "../btn/DltBtn";
 
-export default function CardListItems({cards, setCards, card, deck}) {
+export default function CardListItems({cards, setCards, card, deck, countCards, setCountCards}) {
   const { cardId } = useParams()
+  console.log(cardId)
   const { front, back } = card
     return <>
         <div className = "card container">
@@ -20,7 +21,10 @@ export default function CardListItems({cards, setCards, card, deck}) {
             <div className = "col"></div>
             <div className = "float-end">
                 <Btn option = "edit-card" card = {card} deck = {deck}/>
-                <Dlt cards = {cards} setCards = {setCards} deck = {deck} cardId = {cardId}/>
+                <Dlt  cards = {cards} setCards = {setCards} 
+                      deck = {deck} cardId = {card.id}
+                      countCards = {countCards} setCountCards = {setCountCards}
+                      />
             </div>
           </div>
         </div>

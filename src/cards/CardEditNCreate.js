@@ -3,10 +3,9 @@ import { useHistory, useParams } from "react-router-dom";
 import BreadCrumb from "../BreadCrumb/BreadCrumb";
 import { createCard, updateCard } from "../utils/api";
 
-const Form = ({ cards, setCards, card, setCard, option }) => {
-    const {deckId} = useParams();
+const Form = ({ cards, setCards, card, setCard, option, countCards, setCountCards }) => {
+    const { deckId } = useParams();
     const deckIdInNum = parseInt(deckId);
-
     //Reset the tmpety value if it is not editing a card
     useEffect(() => {
         if (option !== "edit-card") setCard({front:"", back:"", id: ""})
@@ -48,6 +47,7 @@ const Form = ({ cards, setCards, card, setCard, option }) => {
         const abortController = new AbortController();
         if (option === "edit-card") update(abortController)
         create(abortController);
+        setCountCards(() => countCards + 1)
         setChange(false);
         return () => abortController.abort();
     };
@@ -104,7 +104,7 @@ return <form onSubmit={handleSubmit}>
 }
 
 
-export default function CardEditNCreate({deck, cards, setCards, card, setCard, option, setCardId}) {
+export default function CardEditNCreate({deck, cards, setCards, card, setCard, option, setCardId, countCards, setCountCards}) {
     //get the cardId parameter if there is
     //then store it in setCardId and lift it up to the parent component to get the card having the "id" key which is the cardId parameter
     const { cardId } = useParams();
@@ -118,7 +118,10 @@ return <div className ="container">
             <BreadCrumb deck = {deck} cards = {cards} />
         </div>
         <div>
-            <Form option = {option} cards={cards} setCards={setCards} deck = {deck} card ={card} setCard = {setCard}/>
+            <Form option = {option} cards={cards} setCards={setCards} 
+            deck = {deck} card ={card} setCard = {setCard}
+            countCards = {countCards} setCountCards = {setCountCards}
+            />
         </div> 
     </div>
 }

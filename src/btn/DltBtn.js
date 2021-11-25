@@ -10,9 +10,11 @@ export default function Dlt (props) {
         deckId, 
         setDecks, 
         option, 
-        setCards 
+        setCards, 
+        countCards, setCountCards 
     } = props
-    const {url} = useRouteMatch();
+    
+    const { url } = useRouteMatch();
     const history = useHistory();
     const handleDelete = () => {
         const abortController = new AbortController();
@@ -20,11 +22,15 @@ export default function Dlt (props) {
             const dltCard = deleteCard(cardId,abortController.signal);
             dltCard.then(() => listCards(deckId, abortController.signal)
                                 .then((response) => setCards(() => response)));
+            setCountCards(() => countCards + 1)
         };
         const deckDelete = () => {
             const dltDeck = deleteDeck(deckId, abortController.signal);
             dltDeck.then(() =>   listDecks(abortController.signal)
-                                .then((response) => setDecks(() => response)));
+                                .then((response) => {
+                                    setDecks(() => response)
+                                }));
+            history.push("/")
         }
         const cardMessage = `
             Delete this card?
