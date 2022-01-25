@@ -1,11 +1,8 @@
 import React from "react"
-import { useParams } from "react-router";
 import Btn from "../btn/Btn";
 import Dlt from "../btn/DltBtn";
 
 export default function CardListItems({cards, setCards, card, deck, countCards, setCountCards}) {
-  const { cardId } = useParams()
-  console.log(cardId)
   const { front, back } = card
     return <>
         <div className = "card container">

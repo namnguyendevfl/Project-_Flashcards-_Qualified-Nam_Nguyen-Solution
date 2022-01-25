@@ -20,7 +20,6 @@ export default function Deck(props) {
     const [ cardId, setCardId ] = useState(null);
     const [ cards, setCards ] = useState([])
     const [ countCards, setCountCards ] = useState(0)
-    console.log(countCards)
     //Define a card variable here using some empty initial values
     //We can use this to create a new card with the initial values
     //or we can store a card needed to edit pass it into the cardCreateNEdit component and edit it

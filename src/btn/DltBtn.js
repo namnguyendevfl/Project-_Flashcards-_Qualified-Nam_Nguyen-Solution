@@ -3,7 +3,6 @@ import { deleteCard, listCards, deleteDeck, listDecks } from "../utils/api";
 import { useRouteMatch, useHistory } from "react-router-dom";
 
 //implement this Dlt component to dlt a card or deck
-
 export default function Dlt (props) {
     const { 
         cardId, 
