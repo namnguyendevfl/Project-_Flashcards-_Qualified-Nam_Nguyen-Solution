@@ -19,11 +19,11 @@ const Home = ({renderedDeckList}) => (
 
 function Layout() {
   const [ decks, setDecks ] = useState([]);
-  //add countDecks and setCountDecks to help count any changes to decks and re-render the decks
+  //add countDecks and setCountDecks to help count any changes to decks and re-render the app
   const [ countDecks, setCountDecks ] = useState(0)
   //Define a deck variable here using some empty initial values
   //We can use this to create a new deck with the initial values
-  //or we can store a deck needed to edit pass it into the deckCreateNEdit component and edit it
+  //or we can store a deck needed to edit, then pass it into the deckCreateNEdit component and edit it
   const [ deck, setDeck ] = useState({name: "", description: "", id: ""});
   useEffect (() => {
       const abortController = new AbortController();
